@@ -1,3 +1,5 @@
+created with React.js(hooks, router), Firebase auth(Email,Password), Tailwindcss
+
 ### `npm start`
 
 Runs the app in the development mode.\
