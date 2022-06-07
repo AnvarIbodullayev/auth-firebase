@@ -1,12 +1,10 @@
 body {
-    background: #ffffff;
-    text-primary: #000;
-    text-secondary: #8e05c2;
-    accent: #8e05c2;
+    background: #fff;
     border: #333;
-    form-bg: #fff;
 }
-
+input{
+    color: #000;
+}
 [data-theme='dark'] {
     background: rgb(22, 22, 22);
     color: rgb(189, 189, 189);
