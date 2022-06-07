@@ -3,7 +3,10 @@ import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     signOut,
-    onAuthStateChanged
+    onAuthStateChanged,
+    GoogleAuthProvider,
+    GithubAuthProvider,
+    signInWithPopup,
 } from 'firebase/auth';
 import { auth } from '../firebase';
 
@@ -12,6 +15,16 @@ const UserContext = createContext()
 export const AuthContextProvider = ({ children }) => {
 
     const [user, setUser] = useState({});
+    
+    const googleSignIn = () => {
+        const provider = new GoogleAuthProvider();
+        signInWithPopup(auth, provider)
+    }
+
+    const gihubSignIn = () => {
+        const provider = new GithubAuthProvider();
+        signInWithPopup(auth, provider)
+    }
 
     const createUser = (email, password) => {
         return(
@@ -37,7 +50,7 @@ export const AuthContextProvider = ({ children }) => {
     })
 
     return(
-        <UserContext.Provider value={{ createUser, user, logout, signIn }}>
+        <UserContext.Provider value={{ gihubSignIn, googleSignIn, createUser, user, logout, signIn }}>
             {children}
         </UserContext.Provider>
     );

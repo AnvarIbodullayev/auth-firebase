@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.navbar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.darkmode-icon{
+    font-size: 28px;
+    margin: 0 0 0 22px;
+    cursor: pointer;
+}
+.google-button{
+    width: 100%!important;
+}
+.github-icon{
+    font-size: 24px;
+}

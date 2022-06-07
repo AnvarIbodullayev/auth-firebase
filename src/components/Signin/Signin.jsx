@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserAuth } from '../../context/AuthContext';
+import { GoogleButton } from 'react-google-button';
+import { BsGithub } from 'react-icons/bs';
 
 export default function Signin() {
 
@@ -9,7 +11,7 @@ export default function Signin() {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    const { signIn } = UserAuth();
+    const { signIn, googleSignIn, gihubSignIn } = UserAuth();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -20,6 +22,25 @@ export default function Signin() {
         } catch(e) {
             setError(e.message)
             console.log(e.message);
+        }
+    }
+
+    const handleGoogleSign = async (e) => {
+        try {
+            await googleSignIn()
+            navigate('/account')
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    const handleGitubSign = async (e) => {
+        try {
+            await gihubSignIn()
+            navigate('/account')
+        } catch (e) {
+            setError(e)
+            console.log(e);
         }
     }
 
@@ -45,8 +66,13 @@ export default function Signin() {
                     <label className='py-2 font-medium'>Password</label>
                     <input onChange={(e) => setPassword(e.target.value)} className='border p-3' type='password' />
                 </div>
-                <button className='border border-blue-500 bg-blue-600 hover:bg-blue-500 w-full p-4 my-2 text-white '>
+                <button className='border border-blue-500 bg-blue-600 hover:bg-blue-500 w-full p-4 my-2 text-white'>
                     Sign In
+                </button>
+                <GoogleButton onClick={handleGoogleSign} className='google-button' />
+                <button onClick={handleGitubSign} className='md:flex justify-between border border-slate-500 bg-slate-600 hover:bg-slate-500 w-full p-4 my-2 text-white'>
+                    <BsGithub className='github-icon' />
+                    <code>Sign In with Gihub</code>
                 </button>
             </form>
         </div>
